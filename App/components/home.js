@@ -108,7 +108,7 @@ export default class Home extends Component {
     )
   }
 
-  yup(){
+  yup(){handleYup()
 this.refs['swiper']._goToNextCard()  }
 
 nope(){
@@ -123,8 +123,8 @@ componentWillMount() {
           AsyncStorage.getItem('user').then((userId) => {
             console.log(userId, 'userId');
             // token doesnt matter right now but we might want to add later
-            //static ip for demo, but GPS does work.
-            return getMoviesFromApiAsync("http://138.68.62.249:8000/restaurants?lat=32.785723&lng=-96.800743")
+            //static ip for demo, but GPS does work.41.854877, -87.647057
+            return getMoviesFromApiAsync("http://138.68.62.249:8000/restaurants?lat=30.285421&lng=-97.738369")
           }).then((resp) => {
             this.setState({
               restaurants_data: temp
