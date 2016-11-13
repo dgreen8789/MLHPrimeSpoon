@@ -116,30 +116,29 @@ this.refs['swiper']._goToNextCard()  }
 
 componentWillMount() {
 
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-          var initialPosition = position;
-
-          AsyncStorage.getItem('user').then((userId) => {
-            console.log(userId, 'userId');
-            // token doesnt matter right now but we might want to add later
-            console.log("Coords Out the Function",initialPosition)
-            return getMoviesFromApiAsync("http://138.68.62.249:8000/restaurants?lat=" + initialPosition.coords.latitude + "&lng=" + initialPosition.coords.longitude)
-          }).then((resp) => {
-            this.setState({
-              restaurants_data: temp
-            });
-          })
-
-          // return "http://138.68.62.249:8000/restaurants?lat=" + lat + "&lng=" + long
-        },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
+    // navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       var initialPosition = position;
+    //
+    //
+    //
+    //       // return "http://138.68.62.249:8000/restaurants?lat=" + lat + "&lng=" + long
+    //     },
+    //     (error) => alert(JSON.stringify(error)),
+    //     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    //   );
 
 
     // fetch asyncOffline token and user if user go to main otherwise login
-
+    AsyncStorage.getItem('user').then((userId) => {
+      console.log(userId, 'userId');
+      // token doesnt matter right now but we might want to add later
+      return getMoviesFromApiAsync("http://138.68.62.249:8000/restaurants?lat=30.285897&lng=-97.739117")
+    }).then((resp) => {
+      this.setState({
+        restaurants_data: temp
+      });
+    })
   }
 
 
