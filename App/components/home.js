@@ -20,12 +20,14 @@ import Nav from './global-widgets/nav'
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/Ionicons';
 const labels = ["distance","name","phone","address","id","photo_url"]
+
 var json_data;
 var data;
 var temp = []
 var q = 0
-function getMoviesFromApiAsync() {
-    return fetch('http://138.68.62.249:8000/restaurants?lat=30.285421&lng=-97.739120')
+function getMoviesFromApiAsync(url1) {
+    console.log("URL TRACE:",url1)
+    return fetch(url1)
       .then((response) => response.json())
       .then((responseJson) => {
         data = responseJson.restaurants;
@@ -57,6 +59,7 @@ export default class Home extends Component {
     //getMoviesFromApiAsync()
     this.state = {
       restaurants_data: null,
+      initialPosition: 'unknown',
     }
 
     console.log("DATA",this.state.restaurants_data)
@@ -112,16 +115,31 @@ nope(){
 this.refs['swiper']._goToNextCard()  }
 
 componentWillMount() {
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+          var initialPosition = position;
+
+          AsyncStorage.getItem('user').then((userId) => {
+            console.log(userId, 'userId');
+            // token doesnt matter right now but we might want to add later
+            console.log("Coords Out the Function",initialPosition)
+            return getMoviesFromApiAsync("http://138.68.62.249:8000/restaurants?lat=" + initialPosition.coords.latitude + "&lng=" + initialPosition.coords.longitude)
+          }).then((resp) => {
+            this.setState({
+              restaurants_data: temp
+            });
+          })
+
+          // return "http://138.68.62.249:8000/restaurants?lat=" + lat + "&lng=" + long
+        },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+
+
     // fetch asyncOffline token and user if user go to main otherwise login
-    AsyncStorage.getItem('user').then((userId) => {
-      console.log(userId, 'userId');
-      // token doesnt matter right now but we might want to add later
-      return getMoviesFromApiAsync()
-    }).then((resp) => {
-      this.setState({
-        restaurants_data: temp
-      });
-    })
+
   }
 
 

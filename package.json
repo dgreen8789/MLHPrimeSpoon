@@ -12,6 +12,7 @@
     "react-native-action-button": "^2.0.14",
     "react-native-fs": "^2.0.1-rc.2",
     "react-native-icons": "^0.7.1",
+    "react-native-location": "^0.27.0",
     "react-native-responsive-image": "^1.3.0",
     "react-native-swipe-cards": "0.0.9",
     "react-native-ximage": "^1.0.2"
