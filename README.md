@@ -29,9 +29,9 @@ An Android or Windows Store app would be nice for those of us who aren't enslave
 
 ###Images
 
-[Screenshot 1](http://imgur.com/fF0BszJ)
-[Screenshot 2](http://imgur.com/egMNOlT)
-[Screenshot 3](http://imgur.com/rWfEQOp)
+[Screenshot 1](http://imgur.com/fF0BszJ.png)
+[Screenshot 2](http://imgur.com/egMNOlT.png)
+[Screenshot 3](http://imgur.com/rWfEQOp.png)
 
 ###License
 Do with it whatever you want, just provide credit to Michael Asper and David Green. 
