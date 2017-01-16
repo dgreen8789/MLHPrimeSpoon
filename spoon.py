@@ -17,7 +17,7 @@ parser.add_argument('next_page_token')
 #This is for testing
 @app.route('/')
 def api_root():
-	return 'welcome'
+return 'welcome'
 
 #This does most of the work
 class RestuarantList(Resource):
@@ -29,12 +29,12 @@ class RestuarantList(Resource):
 		lng = args['lng']
 		loc = {"lat":lat,"lng":lng}
 
-		#support for extending page results to get more cards
-		if args['next_page_token']:
-			result = google_calls.get_next_page(loc, args['next_page_token'])
-		else:
-			result = google_calls.get_restaurants(loc)
-		return result
+	#support for extending page results to get more cards
+	if args['next_page_token']:
+	result = google_calls.get_next_page(loc, args['next_page_token'])
+	else:
+	result = google_calls.get_restaurants(loc)
+	return result
 
 #code to start application execution
 if __name__ == '__main__':
